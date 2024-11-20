@@ -1,0 +1,5 @@
+C:\Programming books\C# NET\Koi management\RelayCommand\obj\Debug\net8.0\RelayCommand.csproj.AssemblyReference.cache
+C:\Programming books\C# NET\Koi management\RelayCommand\obj\Debug\net8.0\RelayCommand.GeneratedMSBuildEditorConfig.editorconfig
+C:\Programming books\C# NET\Koi management\RelayCommand\obj\Debug\net8.0\RelayCommand.AssemblyInfoInputs.cache
+C:\Programming books\C# NET\Koi management\RelayCommand\obj\Debug\net8.0\RelayCommand.AssemblyInfo.cs
+C:\Programming books\C# NET\Koi management\RelayCommand\obj\Debug\net8.0\RelayCommand.csproj.CoreCompileInputs.cache

@@ -1,0 +1,61 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.11.35327.3
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KoiManagement", "KoiManagement.csproj", "{239C4309-90C6-4D26-977C-784C4002558B}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Repositories", "..\Repositories\Repositories.csproj", "{60E506C9-C37F-4422-AD68-E814793CEA93}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Services", "..\Services\Services.csproj", "{125E4DED-EF12-42E6-B8F8-C9542A49F659}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CustomFilter", "..\CustomFilter\CustomFilter.csproj", "{B9B12091-AF64-41EB-828F-A080CC81C3A4}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CustomDropDownMenu", "..\CustomDropDownMenu\CustomDropDownMenu.csproj", "{CADDB2F4-1669-48D4-8334-6DC5071245EC}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CartCustomControl", "..\CartCustomControl\CartCustomControl.csproj", "{B1FC7783-228F-4B6B-964B-22F2BE5AC3EB}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CustomCarousel", "..\CustomCarousel\CustomCarousel.csproj", "{27484B70-396A-405F-A264-757640B48D11}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{239C4309-90C6-4D26-977C-784C4002558B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{239C4309-90C6-4D26-977C-784C4002558B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{239C4309-90C6-4D26-977C-784C4002558B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{239C4309-90C6-4D26-977C-784C4002558B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{60E506C9-C37F-4422-AD68-E814793CEA93}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{60E506C9-C37F-4422-AD68-E814793CEA93}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{60E506C9-C37F-4422-AD68-E814793CEA93}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{60E506C9-C37F-4422-AD68-E814793CEA93}.Release|Any CPU.Build.0 = Release|Any CPU
+		{125E4DED-EF12-42E6-B8F8-C9542A49F659}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{125E4DED-EF12-42E6-B8F8-C9542A49F659}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{125E4DED-EF12-42E6-B8F8-C9542A49F659}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{125E4DED-EF12-42E6-B8F8-C9542A49F659}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B9B12091-AF64-41EB-828F-A080CC81C3A4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B9B12091-AF64-41EB-828F-A080CC81C3A4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B9B12091-AF64-41EB-828F-A080CC81C3A4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B9B12091-AF64-41EB-828F-A080CC81C3A4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CADDB2F4-1669-48D4-8334-6DC5071245EC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CADDB2F4-1669-48D4-8334-6DC5071245EC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CADDB2F4-1669-48D4-8334-6DC5071245EC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CADDB2F4-1669-48D4-8334-6DC5071245EC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B1FC7783-228F-4B6B-964B-22F2BE5AC3EB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B1FC7783-228F-4B6B-964B-22F2BE5AC3EB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B1FC7783-228F-4B6B-964B-22F2BE5AC3EB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B1FC7783-228F-4B6B-964B-22F2BE5AC3EB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{27484B70-396A-405F-A264-757640B48D11}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{27484B70-396A-405F-A264-757640B48D11}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{27484B70-396A-405F-A264-757640B48D11}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{27484B70-396A-405F-A264-757640B48D11}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {40DF6C1D-90AF-4E75-80CA-156C7636324D}
+	EndGlobalSection
+EndGlobal

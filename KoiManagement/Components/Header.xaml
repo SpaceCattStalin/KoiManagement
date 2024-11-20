@@ -1,0 +1,182 @@
+﻿<UserControl
+    x:Class="KoiManagement.Components.Header"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:cartcustomcontrol="clr-namespace:CartCustomControl;assembly=CartCustomControl"
+    xmlns:customcontrol="clr-namespace:CustomDropDownMenu;assembly=CustomDropDownMenu"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:fa="http://schemas.fontawesome.io/icons/"
+    xmlns:local="clr-namespace:KoiManagement.Components"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    x:Name="root"
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    mc:Ignorable="d">
+    <Grid Height="{Binding Height, ElementName=root}" Background="#1f2023">
+        <Grid.Effect>
+            <DropShadowEffect
+                BlurRadius="20"
+                Direction="190"
+                ShadowDepth="10"
+                Color="#606f7b" />
+        </Grid.Effect>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <StackPanel
+            Grid.Column="0"
+            Margin="15,5,0,0"
+            VerticalAlignment="Center"
+            Orientation="Horizontal">
+            <Grid>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto" />
+                    <ColumnDefinition Width="auto" />
+                </Grid.ColumnDefinitions>
+
+                <Ellipse
+                    Grid.Row="0"
+                    Grid.Column="0"
+                    Width="13"
+                    Height="13"
+                    Margin=".5"
+                    Fill="#E3C5B5" />
+
+                <Ellipse
+                    Grid.Row="0"
+                    Grid.Column="1"
+                    Width="13"
+                    Height="13"
+                    Margin=".5"
+                    Fill="#E3C5B5" />
+
+                <Ellipse
+                    Grid.Row="1"
+                    Grid.Column="0"
+                    Width="13"
+                    Height="13"
+                    Margin=".5"
+                    Fill="#E3C5B5" />
+
+                <Ellipse
+                    Grid.Row="1"
+                    Grid.Column="1"
+                    Width="13"
+                    Height="13"
+                    Margin=".5"
+                    Fill="#E3C5B5" />
+            </Grid>
+            <TextBlock
+                Margin="5,0,0,0"
+                FontSize="22"
+                FontWeight="ExtraBold"
+                Foreground="#E3C5B5"
+                Text="Tranquil Fins" />
+        </StackPanel>
+
+        <StackPanel
+            Grid.Column="1"
+            Margin="0,5,15,0"
+            HorizontalAlignment="Right"
+            VerticalAlignment="Center"
+            Orientation="Horizontal">
+            <StackPanel.Resources>
+                <Style TargetType="Button">
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="Button">
+                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </StackPanel.Resources>
+            <cartcustomcontrol:CartCustomControl
+                x:Name="cartControl"
+                Cursor="Hand"
+                IsOpen="{Binding IsCartOpen, ElementName=root}" />
+            <!--<Button Cursor="Hand">
+                <fa:FontAwesome
+                    FontSize="24"
+                    Foreground="#E3C5B5"
+                    Icon="ShoppingCart" />
+            </Button>-->
+            <!--<Button Margin="10,0,0,0" Cursor="Hand">
+                <fa:FontAwesome
+                    FontSize="22"
+                    Foreground="#E3C5B5"
+                    Icon="SignOut" />
+            </Button>-->
+            <customcontrol:DropdownMenu Margin="10,0,0,0" Cursor="Hand">
+                <customcontrol:DropdownMenu.Resources>
+                    <Style x:Key="navigationBtn" TargetType="Button">
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="Button">
+                                    <Border x:Name="border">
+                                        <Border.Style>
+                                            <Style TargetType="Border">
+                                                <Setter Property="Padding" Value="10,10,10,5" />
+                                                <Setter Property="Cursor" Value="Hand" />
+                                                <Setter Property="BorderThickness" Value="0" />
+                                                <Setter Property="BorderBrush" Value="Transparent" />
+                                                <Setter Property="Background" Value="Transparent" />
+                                            </Style>
+                                        </Border.Style>
+                                        <ContentPresenter HorizontalAlignment="Left" VerticalAlignment="Center" />
+                                    </Border>
+                                    <ControlTemplate.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter TargetName="border" Property="Background" Value="#8795a1" />
+                                        </Trigger>
+                                    </ControlTemplate.Triggers>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </customcontrol:DropdownMenu.Resources>
+                <StackPanel Background="#E3C5B5">
+                    <Button
+                        x:Name="accountBtn"
+                        Click="accountBtn_Click"
+                        FontSize="14"
+                        FontWeight="SemiBold"
+                        Foreground="#333333"
+                        Style="{StaticResource navigationBtn}">
+                        Account
+                    </Button>
+                    <Button
+                        x:Name="orderBtn"
+                        Click="orderBtn_Click"
+                        FontSize="14"
+                        FontWeight="SemiBold"
+                        Foreground="#333333"
+                        Style="{StaticResource navigationBtn}">
+                        Orders
+                    </Button>
+                    <Separator
+                        Height="1"
+                        Margin="5,0,5,0"
+                        Background="#3d4851" />
+
+                    <Button
+                        x:Name="logoutBtn"
+                        Click="logoutBtn_Click"
+                        FontSize="14"
+                        FontWeight="SemiBold"
+                        Foreground="#333333"
+                        Style="{StaticResource navigationBtn}">
+                        Logout
+                    </Button>
+                </StackPanel>
+            </customcontrol:DropdownMenu>
+        </StackPanel>
+    </Grid>
+</UserControl>

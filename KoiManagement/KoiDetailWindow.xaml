@@ -1,0 +1,502 @@
+﻿<Window
+    x:Class="KoiManagement.KoiDetailWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:components="clr-namespace:KoiManagement.Components"
+    xmlns:customcarousel="clr-namespace:CustomCarousel;assembly=CustomCarousel"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:fa="http://schemas.fontawesome.io/icons/"
+    xmlns:local="clr-namespace:KoiManagement"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Title="KoiDetailWindow"
+    Width="800"
+    Height="450"
+    WindowState="Maximized"
+    WindowStyle="SingleBorderWindow"
+    mc:Ignorable="d">
+    <Window.Resources>
+        <BooleanToVisibilityConverter x:Key="BoolToVisConverter" />
+    </Window.Resources>
+    <Grid Background="#dfbbaa">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <components:Header
+            x:Name="headerComponent"
+            Grid.Row="0"
+            Margin="0,0,0,0"
+            IsCartOpen="{Binding IsCartOpen}"
+            KoisList="{Binding KoisInCart}"
+            TotalAmount="{Binding TotalPriceOfCart}"
+            User="{Binding CurrentUser}" />
+
+        <Grid
+            Grid.Row="1"
+            Grid.RowSpan="2"
+            Panel.ZIndex="998"
+            Background="Black"
+            Opacity="0.5"
+            Visibility="{Binding IsCartOpen, Converter={StaticResource BoolToVisConverter}}" />
+
+        <Grid
+            Grid.Row="1"
+            Grid.RowSpan="2"
+            Width="500"
+            HorizontalAlignment="Right"
+            Panel.ZIndex="999"
+            Visibility="{Binding IsCartOpen, Converter={StaticResource BoolToVisConverter}}">
+            <Grid.Effect>
+                <DropShadowEffect
+                    BlurRadius="10"
+                    Direction="270"
+                    ShadowDepth="15"
+                    Color="Gray" />
+            </Grid.Effect>
+            <Grid Background="#E3C5B5">
+                <Grid.Effect>
+                    <DropShadowEffect
+                        BlurRadius="15"
+                        Opacity="0.5"
+                        ShadowDepth="5"
+                        Color="#808080" />
+                </Grid.Effect>
+                <Border
+                    Margin="10,0,10,0"
+                    Padding="0,0,0,20"
+                    HorizontalAlignment="Left">
+                    <StackPanel>
+                        <TextBlock
+                            Margin="1,25,0,15"
+                            FontSize="24"
+                            FontWeight="Bold"
+                            Text="Your Cart" />
+                        <ListView
+                            Background="Transparent"
+                            BorderBrush="Transparent"
+                            Focusable="False"
+                            ItemsSource="{Binding KoisInCart}">
+                            <ListView.ItemContainerStyle>
+                                <Style TargetType="ListViewItem">
+                                    <Setter Property="Background" Value="Transparent" />
+                                    <Setter Property="Template">
+                                        <Setter.Value>
+                                            <ControlTemplate TargetType="ListViewItem">
+                                                <ContentPresenter />
+                                            </ControlTemplate>
+                                        </Setter.Value>
+                                    </Setter>
+                                </Style>
+                            </ListView.ItemContainerStyle>
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid Margin="0,0,0,10">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="auto" />
+                                            <RowDefinition Height="auto" />
+                                            <RowDefinition Height="auto" />
+                                        </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="2*" />
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="*" />
+                                        </Grid.ColumnDefinitions>
+
+                                        <TextBlock
+                                            Grid.Row="0"
+                                            Grid.Column="0"
+                                            FontWeight="Bold">
+                                            Name
+                                        </TextBlock>
+                                        <TextBlock
+                                            Grid.Row="0"
+                                            Grid.Column="1"
+                                            Margin="0,0,5,0"
+                                            FontWeight="Bold">
+                                            Quantity
+                                        </TextBlock>
+                                        <TextBlock
+                                            Grid.Row="0"
+                                            Grid.Column="2"
+                                            FontWeight="Bold">
+                                            Price
+                                        </TextBlock>
+                                        <Line
+                                            Grid.Row="1"
+                                            Grid.ColumnSpan="3"
+                                            Margin="0,5,0,5"
+                                            Stretch="Fill"
+                                            Stroke="Gray"
+                                            StrokeThickness="1.5"
+                                            X1="0"
+                                            X2="1" />
+
+                                        <TextBlock
+                                            Grid.Row="2"
+                                            Grid.Column="0"
+                                            Text="{Binding Koi.Name}" />
+                                        <TextBlock
+                                            Grid.Row="2"
+                                            Grid.Column="1"
+                                            Margin="0,0,5,0"
+                                            Text="{Binding TotalQuantity}" />
+                                        <TextBlock
+                                            Grid.Row="2"
+                                            Grid.Column="2"
+                                            Text="{Binding TotalPrice, StringFormat={}{0:N0} USD}" />
+                                    </Grid>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                        <Line
+                            Margin="0,5,0,5"
+                            Stretch="Fill"
+                            Stroke="Gray"
+                            StrokeThickness="1.5"
+                            X1="0"
+                            X2="1" />
+                        <StackPanel Margin="278,0,0,0" Orientation="Horizontal">
+                            <TextBlock FontWeight="SemiBold">
+                                Total amount:
+                            </TextBlock>
+                            <TextBlock Margin="5,0,0,0" Text="{Binding TotalPriceOfCart, StringFormat={}{0:N0} USD}" />
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <Button
+                                x:Name="checkoutBtn"
+                                Width="130"
+                                Height="40"
+                                Margin="0,20,0,0"
+                                HorizontalAlignment="Center"
+                                Click="checkoutBtn_Click"
+                                Style="{StaticResource DefaultButton}">
+                                <StackPanel Orientation="Horizontal">
+                                    <fa:FontAwesome FontSize="16" Icon="CartPlus" />
+                                    <TextBlock>Check out</TextBlock>
+                                </StackPanel>
+                            </Button>
+                        </StackPanel>
+                    </StackPanel>
+                </Border>
+            </Grid>
+        </Grid>
+
+        <StackPanel
+            Grid.Row="1"
+            Margin="130,10,0,0"
+            Orientation="Horizontal">
+            <Button
+                x:Name="homeBtn"
+                Margin="0,0,5,0"
+                VerticalAlignment="Center"
+                Click="homeBtn_Click"
+                FontSize="14"
+                FontWeight="Normal"
+                Style="{StaticResource BreadcrumbButton}">
+                Home
+            </Button>
+            <TextBlock VerticalAlignment="Center">/</TextBlock>
+            <Button
+                x:Name="detailBtn"
+                Margin="5,0,0,0"
+                VerticalAlignment="Center"
+                Click="detailBtn_Click"
+                FontSize="16"
+                FontWeight="SemiBold"
+                Style="{StaticResource BreadcrumbButton}">
+                Detail
+            </Button>
+        </StackPanel>
+
+        <Border
+            Grid.Row="2"
+            Height="650"
+            Margin="130,0,130,0"
+            Background="White"
+            CornerRadius="15">
+            <Border.Effect>
+                <DropShadowEffect
+                    BlurRadius="2"
+                    Opacity=".5"
+                    ShadowDepth="0"
+                    Color="#606f7b" />
+            </Border.Effect>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <StackPanel>
+                    <Grid Margin="15">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="520" />
+                            <RowDefinition Height="auto" />
+                        </Grid.RowDefinitions>
+                        <Border
+                            Grid.Row="0"
+                            Width="670"
+                            Margin="10,0,10,10"
+                            Background="White"
+                            BorderBrush="#c6d5e2"
+                            BorderThickness="1"
+                            CornerRadius="8"
+                            Effect="{DynamicResource MaterialDesignShadowDepth2}">
+                            <Grid
+                                Grid.Row="0"
+                                Width="670"
+                                Margin="10,0,10,0"
+                                Background="#c8d5e0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="auto" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="auto" />
+                                </Grid.ColumnDefinitions>
+
+                                <Button
+                                    x:Name="prevBtn"
+                                    Grid.Column="0"
+                                    Width="40"
+                                    Height="40"
+                                    Click="prevBtn_Click">
+                                    <Button.Style>
+                                        <Style BasedOn="{StaticResource MaterialDesignIconButton}" TargetType="Button">
+                                            <Style.Triggers>
+                                                <Trigger Property="IsMouseOver" Value="True">
+                                                    <Setter Property="Background" Value="#606f7b" />
+                                                    <Setter Property="Foreground" Value="White" />
+                                                </Trigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </Button.Style>
+                                    <fa:FontAwesome
+                                        FontSize="24"
+                                        Foreground="White"
+                                        Icon="AngleLeft" />
+                                </Button>
+
+                                <Border
+                                    Grid.Column="1"
+                                    Margin="10"
+                                    CornerRadius="4">
+                                    <Image
+                                        RenderOptions.BitmapScalingMode="HighQuality"
+                                        Source="{Binding PrimaryImage.ImageUrl}"
+                                        Stretch="Uniform">
+                                        <Image.Effect>
+                                            <DropShadowEffect
+                                                BlurRadius="10"
+                                                Opacity="0.2"
+                                                ShadowDepth="0" />
+                                        </Image.Effect>
+                                    </Image>
+                                </Border>
+
+                                <Button
+                                    x:Name="nextBtn"
+                                    Grid.Column="2"
+                                    Width="40"
+                                    Height="40"
+                                    Margin="0,0,25,0"
+                                    Click="nextBtn_Click">
+                                    <Button.Style>
+                                        <Style BasedOn="{StaticResource MaterialDesignIconButton}" TargetType="Button">
+                                            <Style.Triggers>
+                                                <Trigger Property="IsMouseOver" Value="True">
+                                                    <Setter Property="Background" Value="#606f7b" />
+                                                    <Setter Property="Foreground" Value="White" />
+                                                </Trigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </Button.Style>
+                                    <fa:FontAwesome
+                                        FontSize="24"
+                                        Foreground="White"
+                                        Icon="AngleRight" />
+                                </Button>
+                            </Grid>
+                        </Border>
+
+                        <!--<ItemsControl Grid.Row="1" ItemsSource="{Binding KoiImages}">
+                            <ItemsControl.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <StackPanel Orientation="Horizontal" />
+                                </ItemsPanelTemplate>
+                            </ItemsControl.ItemsPanel>
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <Border
+                                        Width="150"
+                                        Height="50"
+                                        Margin="10"
+                                        Background="White"
+                                        BorderBrush="#c6d5e2">
+                                        <Image Source="{Binding ImageUrl}" Stretch="Fill" />
+                                    </Border>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>-->
+                        <ItemsControl Grid.Row="1" ItemsSource="{Binding KoiImages}">
+                            <ItemsControl.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <StackPanel Orientation="Horizontal" />
+                                </ItemsPanelTemplate>
+                            </ItemsControl.ItemsPanel>
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <Border
+                                        Width="100"
+                                        Height="80"
+                                        Margin="5"
+                                        Background="White"
+                                        BorderBrush="#c6d5e2"
+                                        BorderThickness="1"
+                                        CornerRadius="4"
+                                        Cursor="Hand">
+                                        <Image
+                                            MouseLeftButtonUp="Thumbnail_Click"
+                                            Source="{Binding ImageUrl}"
+                                            Stretch="Uniform" />
+                                    </Border>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </Grid>
+                </StackPanel>
+
+                <Grid Grid.Column="1" Margin="20,10,0,0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                    </Grid.RowDefinitions>
+
+
+                    <StackPanel
+                        Grid.Row="0"
+                        Margin="5,10,10,0"
+                        Orientation="Horizontal">
+                        <TextBlock
+                            VerticalAlignment="Center"
+                            FontSize="28"
+                            FontWeight="Bold"
+                            Foreground="#222425"
+                            Text="{Binding CurrentKoi.Size, StringFormat={}{0}″}" />
+                        <TextBlock
+                            Margin="10,0,0,0"
+                            VerticalAlignment="Center"
+                            FontSize="28"
+                            FontWeight="Bold"
+                            Text="{Binding CurrentKoi.Name}" />
+                    </StackPanel>
+
+                    <Grid Grid.Row="1" Margin="2,12,5,0">
+                        <StackPanel
+                            Grid.Column="0"
+                            Margin="0,0,0,7"
+                            Orientation="Horizontal">
+                            <Label FontSize="22" FontWeight="Medium">Price:</Label>
+                            <TextBlock
+                                VerticalAlignment="Center"
+                                FontSize="22"
+                                FontWeight="Medium"
+                                Foreground="#212426"
+                                Text="{Binding CurrentKoi.Price, StringFormat={}{0:N0} USD}" />
+                        </StackPanel>
+                    </Grid>
+
+                    <Grid Grid.Row="2" Margin="2,12,5,0">
+                        <StackPanel
+                            Grid.Column="0"
+                            Margin="0,0,0,7"
+                            Orientation="Horizontal">
+                            <Label FontSize="22" FontWeight="Medium">Type:</Label>
+                            <TextBlock
+                                VerticalAlignment="Center"
+                                FontSize="22"
+                                FontWeight="Medium"
+                                Foreground="#212426"
+                                Text="{Binding CurrentKoi.BreedType.BreedName}" />
+                        </StackPanel>
+                    </Grid>
+
+                    <Grid Grid.Row="3" Margin="2,12,5,0">
+                        <StackPanel Margin="0,0,0,7" Orientation="Horizontal">
+                            <Label FontSize="22" FontWeight="Medium">Age:</Label>
+                            <TextBlock
+                                VerticalAlignment="Center"
+                                FontSize="22"
+                                FontWeight="Medium"
+                                Foreground="#212426"
+                                Text="{Binding CurrentKoi.Age}" />
+                        </StackPanel>
+                    </Grid>
+
+                    <Grid Grid.Row="4" Margin="2,12,5,0">
+                        <StackPanel
+                            Grid.Column="1"
+                            Margin="0,0,0,7"
+                            Orientation="Horizontal">
+                            <Label FontSize="22" FontWeight="Medium">Origin:</Label>
+                            <TextBlock
+                                VerticalAlignment="Center"
+                                FontSize="22"
+                                FontWeight="Medium"
+                                Foreground="#212426"
+                                Text="{Binding CurrentKoi.Origin}" />
+                        </StackPanel>
+                    </Grid>
+
+
+                    <Grid Grid.Row="5" Margin="2,12,5,0">
+                        <StackPanel Margin="0,0,0,7" Orientation="Horizontal">
+                            <Label FontSize="22" FontWeight="Medium">Color:</Label>
+                            <TextBlock
+                                VerticalAlignment="Center"
+                                FontSize="22"
+                                FontWeight="Medium"
+                                Foreground="#212426"
+                                Text="{Binding CurrentKoi.Color}" />
+                        </StackPanel>
+                    </Grid>
+
+                    <Button
+                        Grid.Row="6"
+                        Width="190"
+                        Height="40"
+                        Margin="8,90,0,0"
+                        HorizontalAlignment="Left"
+                        Background="#C15D14"
+                        x:Name="addBtn"
+                        Click="addBtn_Click"
+                        BorderBrush="#9d4b10"
+                        IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                        Style="{StaticResource MaterialDesignFlatMidBgButton}"
+                        ToolTip="MaterialDesignFlatMidButton">
+                        <StackPanel Orientation="Horizontal">
+                            <fa:FontAwesome
+                                VerticalAlignment="Center"
+                                FontSize="20"
+                                Icon="ShoppingCart" />
+                            <TextBlock
+                                Margin="5,0,0,0"
+                                VerticalAlignment="Center"
+                                FontSize="20">
+                                Add to cart
+                            </TextBlock>
+                        </StackPanel>
+
+                    </Button>
+                </Grid>
+            </Grid>
+        </Border>
+    </Grid>
+</Window>
